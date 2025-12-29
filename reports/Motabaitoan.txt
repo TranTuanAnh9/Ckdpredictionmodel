@@ -1,0 +1,176 @@
+Đa số các bệnh nhân suy thận mạn đều đã phát hiện ra bệnh khi đã ở giai đoạn muộn 
+Mô hình này hướng đến việc giúp các bác sĩ chuẩn đoán sớm hơn các trường hợp ghi mắc Bệnh
+
+
+Đây là bài toán phân loại nhị phân (binary classification):
+
+ckd : bệnh nhân mắc bệnh thận mạn
+
+notckd : bệnh nhân không mắc
+
+
+1. id
+
+Mã định danh bệnh nhân
+
+Dùng để phân biệt từng người; không mang ý nghĩa y tế.
+
+2. age
+
+Tuổi của bệnh nhân (đơn vị: năm)
+
+3. bp
+
+Huyết áp tâm thu (mmHg)
+
+Mức huyết áp tại thời điểm đo.
+
+4. sg (Specific Gravity)
+
+Tỷ trọng nước tiểu
+
+Cho biết mức cô đặc của nước tiểu; thận khỏe sẽ điều chỉnh tốt chỉ số này.
+
+5. al (Albumin)
+
+Hàm lượng albumin trong nước tiểu
+
+Albumin cao → dấu hiệu tổn thương thận.
+
+6. su (Sugar)
+
+Lượng đường trong nước tiểu
+
+Đường cao thường liên quan đến tiểu đường → nguy cơ gây suy thận.
+
+7. rbc
+
+Hồng cầu trong nước tiểu
+
+normal = bình thường
+
+abnormal = bất thường
+
+Có hồng cầu là dấu hiệu viêm cầu thận, tổn thương lọc.
+
+8. pc (Pus Cell)
+
+Tế bào mủ trong nước tiểu
+
+Tăng cao → viêm đường tiết niệu hoặc thận.
+
+9. pcc (Pus Cell Clumps)
+
+Cụm tế bào mủ (yes/no)
+
+Là dấu hiệu nhiễm trùng nặng.
+
+10. ba (Bacteria)
+
+Vi khuẩn trong nước tiểu (yes/no)
+
+Xuất hiện vi khuẩn → nhiễm khuẩn đường tiểu.
+
+11. bgr (Blood Glucose Random)
+
+Đường huyết đo ngẫu nhiên (mg/dl)
+
+Liên quan trực tiếp đến bệnh tiểu đường.
+
+12. bu (Blood Urea)
+
+Nồng độ ure trong máu (mg/dl)
+
+Ure cao → giảm chức năng lọc của thận.
+
+13. sc (Serum Creatinine)
+
+Nồng độ creatinine trong máu (mg/dl)
+
+Một trong các chỉ số quan trọng nhất để chẩn đoán suy thận.
+
+14. sod (Sodium)
+
+Natri trong máu
+
+Hạ natri là dấu hiệu rối loạn chức năng thận.
+
+15. pot (Potassium)
+
+Kali trong máu
+
+Thận suy → kali tăng → nguy cơ loạn nhịp tim.
+
+16. hemo (Hemoglobin)
+
+Nồng độ hemoglobin (Hb)
+
+Suy thận thường gây thiếu máu → Hb thấp.
+
+17. pcv (Packed Cell Volume)
+
+Thể tích khối hồng cầu (Hematocrit)
+
+Dùng đánh giá thiếu máu.
+
+18. wc (White Blood Cell Count)
+
+Số lượng bạch cầu
+
+Chỉ số miễn dịch; tăng khi nhiễm trùng.
+
+19. rc (Red Blood Cell Count)
+
+Số lượng hồng cầu
+
+Hồng cầu thấp thường gặp ở người suy thận mạn.
+
+20. htn
+
+Tăng huyết áp (yes/no)
+
+Một nguyên nhân lớn dẫn đến suy thận.
+
+21. dm
+
+Tiểu đường (yes/no/“yes” dạng khác)
+
+Bệnh tiểu đường là nguyên nhân số 1 gây CKD.
+
+22. cad
+
+Bệnh động mạch vành (yes/no)
+
+Liên quan đến rối loạn chuyển hóa và suy thận.
+
+23. appet (Appetite)
+
+Mức độ ăn uống
+
+good = ăn uống bình thường
+
+poor = chán ăn
+
+Người suy thận thường chán ăn.
+
+24. pe (Pedal Edema)
+
+Phù chân (yes/no)
+
+Phù là dấu hiệu giữ nước do thận hoạt động kém.
+
+25. ane (Anemia)
+
+Thiếu máu (yes/no)
+
+Thận suy → giảm sản xuất erythropoietin → thiếu máu.
+
+26. classification
+
+Kết quả phân loại bệnh
+
+ckd = mắc bệnh thận mạn
+
+notckd = không mắc
+
+đôi khi có ckd_stage

@@ -1,0 +1,1 @@
+Tất cả quá trình từ load dữ liệu , EDA cho đến datapreprocessing , Trainmodel, đánh giá đều nằm trong kds.ipynb

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo dự đoán suy thận (CKD)</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(120deg, #e3f2fd, #ffffff);
+            padding: 40px 0;
+        }
+
+        .container {
+            width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 40px 45px;
+            border-radius: 18px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 35px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px 28px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            min-height: 22px;
+        }
+
+        input,
+        select {
+            height: 44px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid #cfd8dc;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #1976d2;
+            box-shadow: 0 0 0 3px rgba(25,118,210,0.15);
+        }
+
+        button {
+            margin-top: 35px;
+            width: 100%;
+            height: 48px;
+            font-size: 16px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .ckd {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .normal {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .note {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🩺 Dự đoán sớm bệnh suy thận mạn tính (CKD)</h2>
+
+    <form method="POST" action="/predict">
+
+        <div class="grid">
+
+            <div class="form-group">
+                <label>Tuổi</label>
+                <input type="number" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label>Huyết áp (mmHg)</label>
+                <input type="number" name="bp" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tỷ trọng nước tiểu</label>
+                <input type="number" step="0.001" name="sg" required>
+            </div>
+
+            <div class="form-group">
+                <label>Albumin trong nước tiểu</label>
+                <input type="number" step="0.1" min="0" name="al" required>
+            </div>
+
+            <div class="form-group">
+                <label>Đường trong nước tiểu</label>
+                <input type="number" step="0.1" min="0" name="su" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tình trạng hồng cầu</label>
+                <select name="rbc">
+                    <option value="0">Bình thường</option>
+                    <option value="1">Bất thường</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tình trạng bạch cầu mủ</label>
+                <select name="pc">
+                    <option value="0">Bình thường</option>
+                    <option value="1">Bất thường</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tăng huyết áp</label>
+                <select name="htn">
+                    <option value="0">Không</option>
+                    <option value="1">Có</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tiểu đường</label>
+                <select name="dm">
+                    <option value="0">Không</option>
+                    <option value="1">Có</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tình trạng ăn uống</label>
+                <select name="appet">
+                    <option value="0">Tốt</option>
+                    <option value="1">Kém</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button type="submit">🔍 Dự đoán nguy cơ suy thận</button>
+    </form>
+
+    {% if result is not none %}
+        <div class="result {{ 'ckd' if result == 0 else 'normal' }}">
+            {% if result == 0 %}
+                ⚠️ KẾT LUẬN: <b>CÓ NGUY CƠ SUY THẬN (CKD)</b><br>
+                Độ tin cậy: <b>{{ conf_ckd }}%</b>
+            {% else %}
+                ✅ KẾT LUẬN: <b>KHÔNG CÓ DẤU HIỆU SUY THẬN</b><br>
+                Độ tin cậy: <b>{{ conf_notckd }}%</b>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="note">
+        * Kết quả mang tính hỗ trợ, không thay thế chẩn đoán của bác sĩ.
+    </div>
+</div>
+</body>
+</html>
