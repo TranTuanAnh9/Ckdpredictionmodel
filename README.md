@@ -88,7 +88,14 @@ sc             Creatinine huyết thanh
 
  Biến mục tiêu :   classification Phân loại
 
-Bỏ qua bước EDA chúng ta sẽ mô tả về bước tiền xử lý 
+Trước hết ta xem tổng quan về thống kê của các bến numeric và category
+![alt text](./image/image-1.png)
+![alt text](./image/image-2.png)
+Ta nhận thấy rằng có 1 và cột đang bị nhầm Dtype nên ta phải biến đổi chúng về đúng Dtype
+Tiếp theo chúng ta đi vào bước EDA khám phá dữ liệu để xem sự tương quan giữa các đặc trưng với nhau và với biến mục tiêu
+![alt text](./image/image33.png)
+Sau khi EDA thì ta nhận thấy rằng việc là các đặc trưng có độ tương quan với nhau khá rõ , Dữ liệu phân biệt nhau khá rõ ràng. 
+
 Nhắc lại mục tiêu: Sau rất nhiều lần thử chúng tôi nhận thấy rằng đây là môt dataset đặc biệt và căn bệnh này cũng rất đặc biết 
 Thứ nhất căn bệnh suy thận là một bệnh mà cực kì khó phát hiện khi còn ở giai đoạn sớm tức từ giao đoạn 2 trở về 
 
@@ -144,8 +151,7 @@ Kết quả cho thấy mô hình logistic là sự lựa chọn phù hợp nhấ
 
 
 kết quả của mô hình logistic cho thấy rằng Pecition 0.99 recall 1 , f1-score 0.99 , AUC 0.999
-
-
+![alt text](./image/image22.png)
 Để sử dụng mà không gập lỗi thì các bạn cố gắng tải Anaconda Navigator để sử dụng hoặc có thể tải hết thư viện trong file requirement.txt 
 
 Cấu trức thư mục bao gồm 
