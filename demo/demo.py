@@ -2,13 +2,20 @@ from flask import Flask, render_template, request
 import numpy as np
 import pandas as pd
 import joblib
+import os
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))   # app/
+ROOT_DIR = os.path.dirname(BASE_DIR)                    # BTL-MLAI/
+MODEL_DIR = os.path.join(ROOT_DIR, "model")             # model/
 
-# ===== LOAD CÁC THỨ ĐÃ TRAIN =====
-model = joblib.load("model.pkl")                 # log_clf
-scaler = joblib.load("scaler.pkl")               # scaler đã fit
-cols_to_scale = joblib.load("cols_to_scale.pkl") # các cột cần scale
+app = Flask(
+    __name__,
+    template_folder=os.path.join(ROOT_DIR, "templates")
+)
+
+model = joblib.load(os.path.join(MODEL_DIR, "model.pkl"))
+scaler = joblib.load(os.path.join(MODEL_DIR, "scaler.pkl"))
+cols_to_scale = joblib.load(os.path.join(MODEL_DIR, "cols_to_scale.pkl"))
 
 @app.route("/", methods=["GET"])
 def home():
@@ -68,4 +75,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
